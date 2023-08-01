@@ -1,0 +1,41 @@
+server:
+  port: 8094
+
+Parameters:
+  databaseUrl:
+    Description: Database url
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: databaseUrl
+  databasePassword:
+    Description: Database url
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: databasePassword
+  databaseDriver:
+    Description: Database url
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: databaseDriver
+  databaseUsername:
+    Description: Database url
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: databaseUsername
+
+spring:
+  datasource:
+    url: !Ref databaseUrl
+    username: !Ref databaseUsername
+    password: !Ref databasePassword
+    driver-class-name: !Ref databaseDriver
+
+  cloud:
+    config:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+appDescription: "Pragma Powerup"
+appVersion: "1.0.0"
+
+# Variable de entorno para la URL del microservicio usuarios
+USERS_URL: http://localhost:8095

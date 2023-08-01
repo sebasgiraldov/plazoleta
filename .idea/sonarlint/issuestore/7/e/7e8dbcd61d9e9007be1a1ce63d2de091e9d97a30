@@ -1,0 +1,31 @@
+
+…
+java:S1488"hImmediately return this expression instead of assigning it to the temporary variable "orderResponseDto".(Ö¦ˆæ8Œ€Ê¦–1
+†
+java:S1488"hImmediately return this expression instead of assigning it to the temporary variable "orderResponseDto".(Ö¦ˆæ8Œ€Ê¦–1
+†
+java:S1488 "hImmediately return this expression instead of assigning it to the temporary variable "orderResponseDto".(Ö¦ˆæ8Œ€Ê¦–1
+†
+java:S1488«"hImmediately return this expression instead of assigning it to the temporary variable "orderResponseDto".(Ö¦ˆæ8Œ€Ê¦–1
+g
+java:S2259Œ"IA "NullPointerException" could be thrown; "responseDto" is nullable here.(Ì—ŒÚ8Ÿ€Ê¦–1
+h
+java:S2259l"FA "NullPointerException" could be thrown; "getBody()" can return null.(–­†³ıÿÿÿÿ8¿¤«–1
+i
+java:S2259‰"FA "NullPointerException" could be thrown; "getBody()" can return null.( Ùæãşÿÿÿÿ8Ÿ€Ê¦–1
+h
+java:S2259z"FA "NullPointerException" could be thrown; "getBody()" can return null.(–­†³ıÿÿÿÿ8Î¡Ó¦–1
+h
+java:S2259="FA "NullPointerException" could be thrown; "getBody()" can return null.(–­†³ıÿÿÿÿ8ÑŸØ¦–1
+a
+java:S1854Q"?Remove this useless assignment to local variable "responseDto".(Ü²œÍùÿÿÿÿ8ÜÑ§–1
+R
+java:S1481Q"0Remove this unused "responseDto" local variable.(Ü²œÍùÿÿÿÿ8„ÜÑ§–1
+o
+java:S6204]"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œçÖß8¥€Ê¦–1
+G
+java:S1197j"*Move the array designators [] to the type.(¦àÕ¸8§€Ê¦–1
+G
+java:S1197x"*Move the array designators [] to the type.(¦àÕ¸8¨€Ê¦–1
+u
+java:S6204»"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(‡âÏ†ıÿÿÿÿ8¬€Ê¦–1

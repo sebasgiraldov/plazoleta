@@ -1,0 +1,7 @@
+
+˜
+java:S1192J"|Define a constant instead of duplicating this literal "No tienes suficientes privilegios para realizar esta accion" 3 times.(»ÛşE8£‡Öä’1
+[	java:S106°"9Replace this use of System.out or System.err by a logger.(•é·»ùÿÿÿÿ8¾Ñ£ç’1
+k	java:S100È"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥¹Ú8ÇŸ…ç1
+u
+java:S6204É"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ÈÀÍùşÿÿÿÿ8Ÿİ‡ç1
