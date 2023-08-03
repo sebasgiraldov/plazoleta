@@ -2,7 +2,7 @@
 FROM openjdk:17
 
 # Copia el archivo JAR de tu aplicación en el contenedor
-COPY target/power-up-arquetipo.jar /app.jar
+COPY build/libs/power-up-arquetipo-0.0.1-SNAPSHOT.jar /app.jar
 
 # Expone el puerto en el que se ejecuta tu aplicación Spring Boot
 EXPOSE 8094
