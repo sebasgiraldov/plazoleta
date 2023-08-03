@@ -32,6 +32,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.webjars.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +131,83 @@ class DishHandlerTest {
             verify(dishServicePort).updateDish(any(DishModel.class));
         }
     }
+
+    @Test
+    void mustEnableOrDisableADish() {
+        DishModel dish = FactoryDishDataTest.getDishModle();
+        DishResponseDto dishResponseDto = FactoryDishDataTest.getDishResponseDto();
+        ResponseEntity<ResponseClientDto> response = FactoryRestaurantDataTest.getResponseEntity();
+        RestaurantModel restaurantModel = FactoryDishDataTest.getRestaurantModel();
+
+        try (MockedStatic<FeignClientInterceptorImp> utilities = Mockito.mockStatic(FeignClientInterceptorImp.class)) {
+            utilities.when(FeignClientInterceptorImp::getBearerTokenHeader).thenReturn("Bearer token");
+            when(userClient.getUserByEmail(any())).thenReturn(response);
+            when(jwtHandler.extractUserName(any())).thenReturn("amraga10@gmail.com");
+            when(dishServicePort.getDish(any())).thenReturn(dish);
+            when(restaurantServicePort.getRestaurant(any())).thenReturn(restaurantModel);
+            when(dishResponseMapper.toResponse(any(), any(), any())).thenReturn(dishResponseDto);
+
+            Assertions.assertEquals(dishResponseDto, dishHandler.enableDish(1L));
+        }
+    }
+
+    @Test
+    void throwNotEnoughPrivilegesWhereUserEnableDishIsNotEqualsToOwnerId() {
+        DishModel dish = FactoryDishDataTest.getDishModle();
+        ResponseEntity<ResponseClientDto> response = FactoryRestaurantDataTest.getResponseEntity();
+        RestaurantModel restaurantModelIncorrectId = FactoryDishDataTest.getRestaurantModelIncorrectId();
+
+        try (MockedStatic<FeignClientInterceptorImp> utilities = Mockito.mockStatic(FeignClientInterceptorImp.class)) {
+            utilities.when(FeignClientInterceptorImp::getBearerTokenHeader).thenReturn("Bearer token");
+            when(userClient.getUserByEmail(any())).thenReturn(response);
+            when(jwtHandler.extractUserName(any())).thenReturn("sgv@gmail.com");
+
+            when(dishServicePort.getDish(any())).thenReturn(dish);
+            when(restaurantServicePort.getRestaurant(any())).thenReturn(restaurantModelIncorrectId);
+
+            Assertions.assertThrows(
+                    NotEnoughPrivileges.class,
+                    () -> dishHandler.enableDish(1L)
+            );
+        }
+    }
+
+    @Test
+    void mustGetDishById(){
+        DishResponseDto dishResponseDto = FactoryDishDataTest.getDishResponseDto();
+        DishModel dish = FactoryDishDataTest.getDishModle();
+        RestaurantModel restaurantModel = FactoryDishDataTest.getRestaurantModel();
+        CategoryModel categoryModel = FactoryDishDataTest.getCategoryModel();
+
+        when(dishServicePort.getDish(any())).thenReturn(dish);
+        when(restaurantServicePort.getRestaurant(any())).thenReturn(restaurantModel);
+        when(categoryServicePort.getCategory(any())).thenReturn(categoryModel);
+        when(dishResponseMapper.toResponse(any(), any(), any())).thenReturn(dishResponseDto);
+
+        Assertions.assertEquals(dishResponseDto, dishHandler.getDish(1L));
+    }
+
+    @Test
+    void throwDishNotFoundExceptionWhereDishIdDoesNotExist(){
+        when(dishServicePort.getDish(any())).thenThrow(NotFoundException.class);
+
+        Assertions.assertThrows(
+                NotFoundException.class,
+                () -> dishHandler.getDish(1L)
+        );
+    }
+
+    @Test
+    void mustGetAllDishes(){
+        List<DishResponseDto> dishResponseDto = new ArrayList<>();
+        dishResponseDto.add(FactoryDishDataTest.getDishResponseDto());
+
+        when(dishResponseMapper.toResponseList(dishServicePort.getAllDishes(),categoryServicePort.getAllCategories(), restaurantServicePort.getAllRestaurants())).thenReturn(dishResponseDto);
+
+        Assertions.assertEquals(dishResponseDto, dishHandler.getAllDishes());
+    }
+
+
 
     @Test
     void throwNullPointerExceptionWhereUserRequestIsNull() {

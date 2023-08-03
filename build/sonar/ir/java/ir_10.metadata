@@ -1,0 +1,2 @@
+com.pragma.powerup.application.handler.impl.JwtHandler#getSignInKey()Ljava/security/Key;
+io.jsonwebtoken.security.Keys#hmacShaKeyFor([B)Ljavax/crypto/SecretKey;

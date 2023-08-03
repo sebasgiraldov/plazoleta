@@ -1,0 +1,1 @@
+com.pragma.powerup.application.handler.impl.DishHandler#getDish(Ljava/lang/Long;)Lcom/pragma/powerup/application/dto/response/DishResponseDto;

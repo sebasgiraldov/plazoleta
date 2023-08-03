@@ -1,0 +1,5 @@
+com.pragma.powerup.application.handler.impl.JwtHandler#generateToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;
+java.util.HashMap#<init>()V
+java.util.HashMap#instance-init#
+==
+generateToken com.pragma.powerup.application.handler.impl.JwtHandler#generateToken(Ljava/util/Map;Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;

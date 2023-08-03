@@ -1,0 +1,7 @@
+organization=sebasgiraldov
+projectKey=sebasgiraldov_plazoleta
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.44548
+dashboardUrl=https://sonarcloud.io/dashboard?id=sebasgiraldov_plazoleta
+ceTaskId=AYm4DPInF9THxwjE5iAl
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYm4DPInF9THxwjE5iAl

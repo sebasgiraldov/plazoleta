@@ -1,0 +1,4 @@
+com.pragma.powerup.application.handler.impl.DishHandler#saveDish(Lcom/pragma/powerup/application/dto/request/DishRequestDto;)Lcom/pragma/powerup/application/dto/response/DishResponseDto;
+java.util.Objects#equals(Ljava/lang/Object;Ljava/lang/Object;)Z
+com.pragma.powerup.infrastructure.exception.NotEnoughPrivileges#<init>()V
+com.pragma.powerup.infrastructure.exception.NotEnoughPrivileges#instance-init#
