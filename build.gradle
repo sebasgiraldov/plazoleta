@@ -71,3 +71,4 @@ sonar {
         property "sonar.token", "d6bbf65eff836a521f578d855e22b3ce96061c20"
     }
 }
+
