@@ -20,6 +20,9 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - script: |
+      chmod +x ./gradlew
+    displayName: 'Make gradlew executable'
     - task: Docker@2
       displayName: Build an image
       inputs:
