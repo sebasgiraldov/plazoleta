@@ -1,4 +1,4 @@
-name: SonarCloud
+name: Pipelines Plazoleta
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  build-and-push:
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
@@ -66,4 +66,25 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/plazoleta:latest
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: $ {{ secret.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag and push the image to amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{}}
+          ECR_REPOSITORY: plazoleta
+          IMAGE_TAG: latest
+        run:  |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 #_________________________________________________________
